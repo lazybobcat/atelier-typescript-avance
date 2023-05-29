@@ -1,0 +1,16 @@
+{
+  "name": "node-starter",
+  "version": "0.0.0",
+  "scripts": {
+    "test": "vitest watch"
+  },
+  "stackblitz": {
+    "startCommand": "npm run test"
+  },
+  "devDependencies": {
+    "vitest": "^0.31.1"
+  },
+  "dependencies": {
+    "typescript": "^5.0.4"
+  }
+}
