@@ -15,13 +15,25 @@ function addition(values: any): number {
 }
 
 /*
-Le choix est matière de préférence, tant que vous restez cohérent dans toute
+Le choix est essentiellement matière de préférence, tant que vous restez cohérent dans toute
 l'application.
 
-Les types permettent de déclarer plus que des interfaces alors que les 
-interfaces seront toujours des interfaces. Si le type peut changer, alors
-"type" est plus indiqué.
+Cependant il y a une chose très importante avec les interface, c'est qu'elles peuvent se surcharger
+elles sont nommée pareil. Ce qui peut être très pratique, ou source de bugs. Par exemple :
 */
+
+interface Fruit {
+  nom: string;
+}
+
+// Pensez vous que "banane" peut contenir l'attribut "vitamines ?"
+// const banane: Fruit = { nom: 'banane', vitamines: ['B6', 'B9'] };
+
+interface Fruit {
+  vitamines: string[];
+}
+
+const pomme: Fruit = { nom: 'pomme', vitamines: ['B', 'E', 'A'] };
 
 /* _____________ Test Cases _____________ */
 import { expect, it } from 'vitest';

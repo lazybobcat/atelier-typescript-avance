@@ -9,7 +9,8 @@ export const addition = (a, b) => {
 };
 
 /*
-Le code fonctionne correctement si on passe des nombres, mais typescript nous affiche tout de même une erreur :
+Le code fonctionne correctement si on passe des nombres, mais puisqu'on a configuré
+"strict: true" dans la configuration de typescript, il nous affiche tout de même une erreur :
 
 Parameter 'a' implicitly has an 'any' type.
 Parameter 'b' implicitly has an 'any' type.
