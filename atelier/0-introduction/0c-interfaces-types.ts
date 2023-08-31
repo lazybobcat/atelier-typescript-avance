@@ -14,6 +14,9 @@ function addition(values: any): number {
   return values.first + values.second;
 }
 
+
+
+
 /*
 Le choix est essentiellement matière de préférence, tant que vous restez cohérent dans toute
 l'application.

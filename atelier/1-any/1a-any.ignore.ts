@@ -1,5 +1,5 @@
 /*
-1. any
+1a. any
 
 Selon la documentation de Typescript elle-même : il ne faut jamais utiliser le
 type "any" (à l'exception de lorsque l'on travaille avec une bibliothèque

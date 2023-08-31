@@ -2,15 +2,22 @@
   "name": "node-starter",
   "version": "0.0.0",
   "scripts": {
-    "test": "vitest watch"
+    "test": "vitest watch",
+    "lint": "eslint --ignore-path .eslintignore --ext .ts ."
   },
   "stackblitz": {
     "startCommand": "npm run test"
   },
   "devDependencies": {
+    "@eslint/create-config": "^0.4.6",
+    "@typescript-eslint/eslint-plugin": "^6.4.0",
+    "eslint": "^8.48.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-config-standard-with-typescript": "^39.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
+    "eslint-plugin-promise": "^6.0.0",
+    "typescript": "^5.2.2",
     "vitest": "^0.31.1"
-  },
-  "dependencies": {
-    "typescript": "^5.0.4"
   }
 }
