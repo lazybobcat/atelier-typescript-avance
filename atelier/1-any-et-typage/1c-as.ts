@@ -8,7 +8,7 @@ peut retourner un objet de type "Chat" ou "Chien".
 Comment utiliser le mot-clé "as" pour indiquer à TypeScript que le type de retour de la fonction
 est un "Chat" ou un "Chien" ?
 
-Attention, "as" dit à Typescript que l'objet est du type indiqué. Il ne vérifie pas que c'est le cas.
+/!\ Attention, "as" dit à Typescript que l'objet est du type indiqué. Il ne vérifie pas que c'est le cas.
 Il faut donc être sûr de ce que l'on fait.
 */
 
@@ -37,6 +37,21 @@ De ce fait, on ne peut pas appeler les méthodes "miauler" et "aboyer" sur ces v
 */
 const toulouse = fabriquerUnAnimal('chat');
 const médor = fabriquerUnAnimal('chien');
+//    ^?
+
+/*
+/!\ Attention : on peut faire n'importe quoi avec "as", commme vous pouvez le voir ci-dessous.
+La documentation de Typescript dit à propos de ce code : "This isn’t the sort of code you would want in your codebase however."
+et suggère d'utiliser des "type guard", que nous verrons plus tard.
+*/
+
+class InfosPrivées {
+  private numeroCarteBleue = '1234 5678 9012 3456';
+}
+
+const infos = new InfosPrivées();
+const numéroCarte = (infos as unknown as { numeroCarteBleue: string })
+  .numeroCarteBleue; // Aie, on accède à une propriété privée !
 
 /* _____________ Test Cases _____________ */
 import { expect, it } from 'vitest';
@@ -49,4 +64,8 @@ it('Toulouse devrait être un chat', () => {
 it('Médor devrait être un chien', () => {
   expect(médor).toHaveProperty('aboyer');
   expect(médor.aboyer()).toEqual('Ouaf');
+});
+
+it("Devrait être possible d'accéder à une propriété privée", () => {
+  expect(numéroCarte).toEqual('1234 5678 9012 3456');
 });

@@ -10,6 +10,7 @@ type Horse = {
   color: string;
 };
 
+// Et si on pouvait faire un store d'autre chose que des "Horse" ?
 class HorseStore {
   private horses: Horse[] = [];
 

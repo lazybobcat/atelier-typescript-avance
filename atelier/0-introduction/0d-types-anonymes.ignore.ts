@@ -9,8 +9,11 @@ type Person = {
   age: number;
 };
 
-// Je ne le type pas "Person" car je n'ai que besoin de la propriété "name".
-// De plus, je peux vouloir afficher le "name" d'un objet qui n'est pas de type "Person" mais qui possède une propriété "name".
+/*
+Je peux vouloir afficher le "name" de tout objet qui possède une propriété "name" (et pas que de type "Person").*
+Donc je ne le type pas "Person", j'utilise un type "anonyme".
+Si ce type est amené à être utilisé plusieurs fois ou si il est complexe, il peut être judicieux de le typer avec une interface ou un type.
+*/
 function printName(data: { name: string }): void {
   // ...
 }

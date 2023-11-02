@@ -14,15 +14,11 @@ function addition(values: any): number {
   return values.first + values.second;
 }
 
-
-
-
 /*
-Le choix est essentiellement matière de préférence, tant que vous restez cohérent dans toute
-l'application.
+Le choix est essentiellement matière de préférence.
 
 Cependant il y a une chose très importante avec les interface, c'est qu'elles peuvent se surcharger
-elles sont nommée pareil. Ce qui peut être très pratique, ou source de bugs. Par exemple :
+si elles ont le même nom. Ce qui peut être très pratique, ou source de bugs. Par exemple :
 */
 
 interface Fruit {
@@ -38,9 +34,26 @@ interface Fruit {
 
 const pomme: Fruit = { nom: 'pomme', vitamines: ['B', 'E', 'A'] };
 
-/* _____________ Test Cases _____________ */
-import { expect, it } from 'vitest';
+/*
+Les classes peuvent aussi étendre d'une classe ou d'une interface.
+*/
 
-it('Les deux notations de fonctions sont équivalentes', () => {
-  expect(addition({ first: 10, second: 32 })).toEqual(42);
-});
+class Animal {
+  constructor(public nom: string) {}
+}
+
+interface Mamifère {
+  nombreDePattes: number;
+}
+
+interface Chat extends Animal, Mamifère {
+  miauler: () => string;
+}
+
+const duchesse: Chat = {
+  nom: 'Duchesse',
+  nombreDePattes: 4,
+  miauler: () => 'Miaou',
+};
+
+export {};
