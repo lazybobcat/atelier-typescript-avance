@@ -18,12 +18,12 @@ type MonTuple = [number, string, boolean];
   const données: MonTuple = [1, 'hello', true];
   const hello = données[1].toLocaleUpperCase(); // Typescript sait que données[1] est de type "string"
   //    ^?
-}
+  const estPoli = données[2]; // Typescript sait que données[2] est de type "boolean"
+  //    ^?
 
-{
-  const données: MonTuple = [1, 'hello', true];
   // @ts-expect-error : MonTuple a une longueur de 3, on ne peut pas accéder à un 4e élément
   const error = données[3]; // Typescript sait que données[3] n'existe pas
+  //    ^?
 }
 
 /*
@@ -33,6 +33,12 @@ Les tuples peuvent avoir des éléments facultatifs mais ils doivent être plac�
   type Vecteur2dOu3d = [number, number, number?];
   const coord1: Vecteur2dOu3d = [1, 2];
   const coord2: Vecteur2dOu3d = [1, 2, 3];
+
+  const z1 = coord1[2]; // Typescript sait que coord1[2] est de type "number | undefined"
+  //    ^?
+
+  const z2 = coord2[2];
+  //    ^?
 
   it('Devrait avoir une longueur de définie à la compilation', () => {
     expect(coord1.length).toEqual(2);
