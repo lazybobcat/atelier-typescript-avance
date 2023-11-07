@@ -1,5 +1,6 @@
 /*
-Xg- Extract
+Utility types / 9g. Extract
+===========================
 
 Extract est un "utility type" qui permet de créer une nouvelle union en ne gardant que les membres d'une ancienne union qui correspondent à un type donné.
 C'est en quelque sorte l'opposé de Exclude.

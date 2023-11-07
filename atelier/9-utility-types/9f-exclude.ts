@@ -1,5 +1,6 @@
 /*
-Xf - Exclude
+Utility types / 9f. Exclude
+===========================
 
 Exclude est un "utility type" qui permet de créer une nouvelle union en excluant d'une anciene union tout ce dont on ne veut pas.
 */

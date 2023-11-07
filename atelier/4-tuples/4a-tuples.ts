@@ -1,5 +1,6 @@
 /*
-4a - Les tuples
+Tuples / 4a. Les tuples
+========================
 
 Les tuples sont des types de tableaux pour lesquels on connait exactemment quels types il contient et à quelle position.
 
@@ -21,7 +22,6 @@ type MonTuple = [number, string, boolean];
   const estPoli = données[2]; // Typescript sait que données[2] est de type "boolean"
   //    ^?
 
-  // @ts-expect-error : MonTuple a une longueur de 3, on ne peut pas accéder à un 4e élément
   const error = données[3]; // Typescript sait que données[3] n'existe pas
   //    ^?
 }
@@ -55,7 +55,9 @@ Les tuples peuvent avoir un nombre d'éléments variable
   const numbers: StringThenNumbers = ['primes', 1, 3, 5, 7, 11, 13, 17, 19];
 }
 
-// L'utilisation la plus courante d'un tuple est avec l'opérateur RxJs "combineLatest" qui en renvoie un (https://www.learnrxjs.io/learn-rxjs/operators/combination/combinelatest).
+/*
+L'utilisation la plus courante d'un tuple est avec l'opérateur RxJs "combineLatest" qui en renvoie un (https://www.learnrxjs.io/learn-rxjs/operators/combination/combinelatest).
+*/
 
 /* _____________ Test Cases _____________ */
 import { expect, it } from 'vitest';

@@ -1,5 +1,6 @@
 /*
-1e - Type guards
+Any et typage / 1e. Type guards
+===============================
 
 Un "type guard" est un opérateur ou une fonction spéciale qui permet de vérifier le type d'une variable.
 Typescript utilise des opérateurs de Javascript comme "typeof", "instanceof" et "in" pour vérifier le type d'une variable.
@@ -16,7 +17,9 @@ class Chien {
   };
   aboyer = (): string => 'Ouaf';
 }
-// Ici je mélange "type" et "class" pour l'exemple. Utilisez l'un ou l'autre selon vos besoins.
+/*
+Ici je mélange "type" et "class" pour l'exemple. Utilisez l'un ou l'autre selon vos besoins.
+*/
 type Animal = Chat | Chien;
 type Race = 'chat' | 'chien';
 
@@ -73,7 +76,9 @@ Le type guard "typeof" permet de vérifier le type d'une variable primitive (str
 Le Type guard "in" permet de vérifier si une propriété existe dans un objet.
 */
 {
-  // Exemple à ne pas reproduire chez soi...
+  /*
+  Exemple à ne pas reproduire chez soi...
+  */
   const allerDansLEspace = (animal: {
     name: string;
     vivant: boolean;

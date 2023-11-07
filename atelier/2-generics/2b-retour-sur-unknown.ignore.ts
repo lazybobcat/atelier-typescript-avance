@@ -1,5 +1,6 @@
 /*
-2b - Generics
+Generics / 2b. Retour sur "unknown"
+===================================
 
 Application des generics pour éviter le type "unknown" (ou "any").
 */
@@ -20,4 +21,7 @@ type Entité = {
 const monEntité: Entité = { id: 1, name: 'Entité 1' };
 const confirmation = new Modale(monEntité);
 
-confirmation.data.name; // Plus d'erreur, on a correctement typé "data"
+/*
+Plus d'erreur, on a correctement typé "data" :
+*/
+confirmation.data.name;

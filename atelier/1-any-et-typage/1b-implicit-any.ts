@@ -1,5 +1,6 @@
 /*
-1b. "any" implicite
+Any et typage / 1b. "any" implicite
+===================================
 
 On veut créer une fonction prenant deux paramètres "a" et "b" et qui effectue leur addition.
 */

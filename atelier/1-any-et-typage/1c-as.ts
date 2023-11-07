@@ -1,5 +1,6 @@
 /*
-1c- "as"
+Any et typage / 1c. "as"
+=========================
 
 Une fonction "factory" permet de créer des instances d'objets en fonction d'un paramètre.
 Cette fonction retourne un objet de type "Animal" mais en fonction du paramètre "type", elle
@@ -9,7 +10,7 @@ Comment utiliser le mot-clé "as" pour indiquer à TypeScript que le type de ret
 est un "Chat" ou un "Chien" ?
 
 /!\ Attention, "as" dit à Typescript que l'objet est du type indiqué. Il ne vérifie pas que c'est le cas.
-Il faut donc être sûr de ce que l'on fait.
+Il faut donc être sûr de ce que l'on fait. "as" comme "assertion" et pas "cast".
 */
 
 class Animal {}
@@ -34,6 +35,7 @@ const fabriquerUnAnimal = (type: Race): Animal => {
 "toulouse" devrait être un "Chat" et "médor" devrait être un "Chien".
 Au survol de la variable, TypeScript nous indique que le type est "Animal".
 De ce fait, on ne peut pas appeler les méthodes "miauler" et "aboyer" sur ces variables.
+On peut compléter ce code avec "as" afin de dire à TypeScript que le type est "Chat" ou "Chien".
 */
 const toulouse = fabriquerUnAnimal('chat');
 const médor = fabriquerUnAnimal('chien');

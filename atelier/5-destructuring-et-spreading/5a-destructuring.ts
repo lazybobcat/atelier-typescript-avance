@@ -1,10 +1,13 @@
 /*
-5a - destructuring
+Destructuring et spreading / 5a. destructuring
+===============================================
 
 La destructuration permet de décomposer un objet ou un tableau ou un tuple en plusieurs variables.
 */
 
-// Décomposition d'un tableau
+/*
+Décomposition d'un tableau
+*/
 {
   const array: number[] = [1, 2, 3, 4, 5];
   const [first, second] = array;
@@ -13,11 +16,15 @@ La destructuration permet de décomposer un objet ou un tableau ou un tuple en p
   const [, , third, , fifth] = array; // ici on ignore les éléments 1, 2 et 4
   //         ^?
 
-  // On peut aussi récupérer le reste des éléments
+  /*
+  On peut aussi récupérer le reste des éléments :
+  */
   const [elem1, ...rest] = array;
   //               ^?
 
-  // On peut aussi échanger des variables
+  /*
+  On peut aussi échanger des variables :
+  */
   const inverse = ([x, y]: [number, number]) => {
     [x, y] = [y, x]; // <- ici on échange les valeurs
 
@@ -37,13 +44,14 @@ La destructuration permet de décomposer un objet ou un tableau ou un tuple en p
   });
 }
 
-// Destructuration d'un tuple (identique à un tableau, mais typage correct et longueur fixe)
+/*
+Destructuration d'un tuple (identique à un tableau, mais typage correct et longueur fixe)
+*/
 {
   const tuple: [number, string, boolean] = [7, 'hello', true];
   const [a, b, c] = tuple; // a: number, b: string, c: boolean
   //        ^?
 
-  // @ts-expect-error : on ne peut pas récupérer un 4e élément car il n'y en a que 3
   const [, , , d] = tuple;
 
   it('Devrait décomposer un tuple', () => {
@@ -54,7 +62,9 @@ La destructuration permet de décomposer un objet ou un tableau ou un tuple en p
   });
 }
 
-// Destruction d'un objet
+/*
+Destruction d'un objet
+*/
 {
   const obj1 = { id: 42, name: 'John Doe', age: 42 };
   const obj2 = { id: 71, sides: 3 };
@@ -69,8 +79,7 @@ La destructuration permet de décomposer un objet ou un tableau ou un tuple en p
   saveEntity(obj2);
   displayEntityName(obj1);
 
-  // @ts-expect-error : obj2 n'a pas d'attribut "name"
-  displayEntityName(obj2);
+  displayEntityName(obj2); // obj2 n'a pas d'attribut "name"
 
   it('Devrait décomposer un objet', () => {
     expect(id).toBe(42);

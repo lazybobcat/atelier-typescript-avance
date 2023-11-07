@@ -1,5 +1,6 @@
 /*
-Xc - Readonly
+Utility types / 9c. Readonly
+============================
 
 Readonly est un "utility type" qui permet de créer un nouveau type en rendant tous les attributs d'un type existant en lecture seule.
 */
@@ -21,7 +22,9 @@ const todo: Readonly<Todo> = {
   completed: false,
 };
 
-//@ts-expect-error : On ne peut pas modifier un attribut en lecture seule
+/*
+On ne peut pas modifier un attribut en lecture seule
+*/
 todo.completed = true;
 
 /* _____________ Test Cases _____________ */

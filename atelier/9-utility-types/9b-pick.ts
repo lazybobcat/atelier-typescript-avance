@@ -1,5 +1,6 @@
 /*
-Xb - Pick
+Utility types / 9b. Pick
+========================
 
 Pick est un "utility type" qui permet de créer un nouveau type en ne gardant que certains attributs d'un type existant.
 C'est en quelque sorte l'opposé de Omit.
@@ -15,7 +16,9 @@ interface Todo {
 type Entity = Pick<Todo, 'id'>;
 //   ^?
 
-// On peut également prendre plusieurs attributs en passant une union.
+/*
+On peut également prendre plusieurs attributs en passant une union.
+*/
 type TodoPreview = Pick<Todo, 'title' | 'completed'>;
 //   ^?
 

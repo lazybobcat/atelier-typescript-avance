@@ -1,5 +1,6 @@
 /*
-6c - Discriminated unions
+Unions / 6c. Discriminated unions
+=================================
 
 On peut se servir des unions pour "réduire" un type à un type plus spécifique.
 On pourra ainsi profiter de l'autocomplétion de Typescript, mais surtout éviter les erreurs
@@ -14,25 +15,37 @@ de typage.
     côté?: number;
   };
 
-  // On déclare un carré avec un rayon !? Typescript nous laisse faire.
+  /*
+  On déclare un carré avec un rayon !? Typescript nous laisse faire.
+  */
   const carré: Shape = { type: 'carré', rayon: 10 };
 }
 
-// Solution : discriminated unions
+/*
+Solution : discriminated unions
+*/
 {
-  // Comprendre : Shape est soit un cercle avec un rayon, soit un carré avec un côté :
+  /*
+  Comprendre : Shape est soit un cercle avec un rayon, soit un carré avec un côté :
+  */
   type Shape =
     | { type: 'cercle'; rayon: number }
     | { type: 'carré'; côté: number };
 
-  // @ts-expect-error : on ne peut pas déclarer un carré avec un rayon
-  const carré: Shape = { type: 'carré', rayon: 10 }; // Impossible, Typescript nous prévient. Et on a de l'autocomplétion !
+  /*
+  Impossible, Typescript nous prévient. Et on a de l'autocomplétion !
+  */
+  const carré: Shape = { type: 'carré', rayon: 10 };
 
-  // @ts-expect-error : Typescript nous prévient aussi si des attributs manquent !
+  /*
+  Impossible, Typescript nous prévient qu'il manque le rayon !
+  */
   const cercle: Shape = { type: 'cercle' };
 }
 
-// Exemple plus concret :
+/*
+Exemple plus concret :
+*/
 {
   type HttpValidResponse = {
     code: number;
@@ -48,9 +61,13 @@ de typage.
 
   const handleResponse = (response: HttpResponse) => {
     if (response.status === 'ok') {
-      // On ne peut que récupérer "body", car Typescript sait que "status" est "ok". + Autocomplétion !
+      /*
+      On ne peut que récupérer "body", car Typescript sait que "status" est "ok". + Autocomplétion !
+      */
     } else {
-      // On ne peut que récupérer "error", car Typescript sait que "status" est "error". + Autocomplétion !
+      /*
+      On ne peut que récupérer "error", car Typescript sait que "status" est "error". + Autocomplétion !
+      */
     }
   };
 

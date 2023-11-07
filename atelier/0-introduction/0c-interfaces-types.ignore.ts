@@ -1,5 +1,6 @@
 /*
-0c. Interfaces et Types
+Introduction / 0c. Interfaces et Types
+=======================================
 
 Si on a une fonction prenant en paramètre un objet avec les propriétés "first"
 et "second", on peut typer cet objet soit avec une interface, soit avec un
@@ -25,7 +26,9 @@ interface Fruit {
   nom: string;
 }
 
-// Pensez vous que "banane" peut contenir l'attribut "vitamines ?"
+/*
+Pensez vous que "banane" peut contenir l'attribut "vitamines" si il est déclaré avant la surcharge d'interface ?
+*/
 // const banane: Fruit = { nom: 'banane', vitamines: ['B6', 'B9'] };
 
 interface Fruit {

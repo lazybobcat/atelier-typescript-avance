@@ -1,5 +1,6 @@
 /*
-1a. any
+Any et typage / 1a. any
+=======================
 
 Selon la documentation de Typescript elle-même : il ne faut jamais utiliser le
 type "any" (à l'exception de lorsque l'on travaille avec une bibliothèque
@@ -21,6 +22,8 @@ function helloWorld(dummy: any): any {
   return dummy.name;
 }
 
-// Typescript l'autorise :
+/*
+Aïe aïe, Typescript l'autorise :
+*/
 const r = helloWorld('test');
 r.test();

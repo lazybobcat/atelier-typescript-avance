@@ -1,5 +1,6 @@
 /*
-1f - Type guards avec "predicate"
+Any et typage / 1f. Type guards avec "predicate"
+===============================================
 
 On peut également définir nos propres "type guards". Un "type guard" est une fonction qui retourne un prédicat de type (type predicate).
 Afin d'informer Typescript que nous avons réduit la variable à un type plus spécifique, on utilise le mot-clé "is" suivi du type pour définir notre prédicat.
@@ -19,13 +20,16 @@ type Vache = {
 };
 type Animal = Chat | Chien | Vache;
 
-const estUnChat = (animal: Animal) => animal.espece === 'chat';
-const estUnChien = (animal: Animal) => animal.espece === 'chien';
+const estUnChat = (animal: Animal) => 'chat' === animal.espece;
+const estUnChien = (animal: Animal) => 'chien' === animal.espece;
 
 const berlioz = { espece: 'chat', miauler: () => 'Miaou' };
 const faireDuBruit = (animal: Animal): string => {
   if (estUnChat(animal)) {
-    return animal.miauler(); // Comment peut-on résoudre cette erreur ? en utilisant "is" dans la fonction "estUnChat"
+    /*
+    Comment peut-on résoudre cette erreur ? en utilisant "is" dans la fonction "estUnChat"
+    */
+    return animal.miauler();
   }
   if (estUnChien(animal)) {
     return animal.aboyer();

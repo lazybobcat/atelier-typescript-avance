@@ -1,5 +1,6 @@
 /*
-1d - "unknown"
+Any et typage / 1d. "unknown"
+==============================
 
 Comme pour "any", on peut assigner n'importe quel type à une variable de type "unknown".
 Contrairement à "any", on ne peut pas utiliser une variable de type "unknown" sans être sûr de son type.
@@ -13,6 +14,24 @@ Il est possible d'éviter "unknown" en utilisant les types génériques que nous
 */
 
 /*
+"unknown" est plus sûr que "any" car on ne peut pas utiliser une
+variable de type "unknown" sans être sûr de son type.
+*/
+{
+  // Erreur : "data" est de type "unknown"
+  const foo = (data: unknown) => data.name;
+  //                             ^?
+
+  const bar = (data: unknown): string | undefined => {
+    // On "réduit" le typde de "data" à un type plus spécifique
+    if (typeof data === 'string') {
+      return data.toLocaleUpperCase();
+      //     ^?
+    }
+  };
+}
+
+/*
 On écrit une bibliothèque permettant d'afficher une fenêtre modale.
 On ne sait pas à l'avance quel sera le type de "data" qui sera passé à la fenêtre modale.
 */
@@ -23,11 +42,22 @@ class Modale {
 const monEntité: Entité = { id: 1, name: 'Entité 1' };
 const confirmation = new Modale(monEntité);
 
-// @ts-expect-error : on ne peut pas accéder à une propriété d'un type "unknown"
+/*
+On ne peut pas utiliser "data" sans vérifier son type :
+*/
 confirmation.data.name;
-// (confirmation.data as { name: string }).name; // On peut utiliser "as" si on est sûr de ce que l'on fait.
+//           ^?
 
-// Voir 2-generics pour une meilleure méthode.
+/*
+Nous verrons juste après comment faire ça plus proprement, mais
+on peut utiliser "as" pour imposer un type à une variable (si on est sûr de ce que l'on fait) :
+*/
+(confirmation.data as { name: string }).name;
+//                                      ^?
+
+/*
+Dans cette exemple, on peut également utiliser les generics pour une meilleure méthode.
+*/
 
 /* _____________ Test Cases _____________ */
 import { expect, it } from 'vitest';

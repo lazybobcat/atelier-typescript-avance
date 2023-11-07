@@ -1,5 +1,6 @@
 /*
-Xd - Partial
+Utility types / 9d. Partial
+===========================
 
 Partial est un "utility type" qui permet de créer un nouveau type en rendant tous les attributs d'un type existant optionnels.
 */

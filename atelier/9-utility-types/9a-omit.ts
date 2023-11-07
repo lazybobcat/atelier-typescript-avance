@@ -1,5 +1,6 @@
 /*
-Xa - Omit
+Utility types / 9a. Omit
+========================
 
 Omit est un "utility type" qui permet de créer un nouveau type en retirant des attributs d'un type existant.
 */
@@ -14,7 +15,9 @@ interface Todo {
 type NewTodo = Omit<Todo, 'id'>;
 //   ^?
 
-// On peut également retirer plusieurs attributs en passant une union.
+/*
+On peut également retirer plusieurs attributs en passant une union.
+*/
 type TodoPreview = Omit<Todo, 'id' | 'description'>;
 //   ^?
 

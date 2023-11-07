@@ -1,5 +1,6 @@
 /*
-6b - Union ou Enum
+Unions / 6b. Union ou Enum
+===========================
 
 Lorsqu'on veut énumérer une liste de valeurs en Typescript, on peut utiliser une union ou un enum (ou un objet avec que des "const").
 Quelles sont les différences ?
@@ -40,13 +41,18 @@ Les soucis avec Enum :
     }
     const foo = (direction: DirectionEnum) => {};
 
-    // Avant Typescript 5.0, ce code était valide ! On pouvait passer n'importe quel nombre pour une valeur de l'enum
-    // (https://www.typescriptlang.org/play?ts=4.9.5#code/N4KABGCmB2CuC2YAiBLATpAxgFxQe2gFE5FQIIAZSAM2wBpxyAlFAcwAt7GIAVPABwbkwAITzZseeELABfANwhGmAgGdsYanjxgAvGAAUAE3RZcBAFzJTOfERIBKPQD4wwBUogB6L2ACCAG4AhtAaPACe-JCqmGgo-BoArAB0AAx0YJiQmXhG2QCX2EEoGsEANih5YBaMWngGACwATA6KskA)
+    /*
+    Avant Typescript 5.0, ce code était valide ! On pouvait passer n'importe quel nombre pour une valeur de l'enum
+    (https://www.typescriptlang.org/play?ts=4.9.5#code/N4KABGCmB2CuC2YAiBLATpAxgFxQe2gFE5FQIIAZSAM2wBpxyAlFAcwAt7GIAVPABwbkwAITzZseeELABfANwhGmAgGdsYanjxgAvGAAUAE3RZcBAFzJTOfERIBKPQD4wwBUogB6L2ACCAG4AhtAaPACe-JCqmGgo-BoArAB0AAx0YJiQmXhG2QCX2EEoGsEANih5YBaMWngGACwATA6KskA)
+    */
     foo(42);
   }
 
   /* PROBLEME 2 */
-  // Javascript n'a pas de type "enum" nativement, le transpileur est donc obligé de créer du code compliqué qui va alourdir le bundle final :
+  /*
+  Javascript n'a pas de type "enum" nativement, le transpileur est donc obligé de créer du code compliqué qui va alourdir
+  le bundle final. Voici le code transpilé en Javascript :
+  */
   //   let DirectionEnum;
   //   (function (DirectionEnum) {
   //     DirectionEnum[(DirectionEnum['Left'] = 0)] = 'Left';
@@ -57,7 +63,9 @@ Les soucis avec Enum :
 
   {
     /* PROBLEME 3 */
-    // On ne peut étendre un enum, mais on peut étendre une union
+    /*
+    On ne peut pas étendre un enum, mais on peut étendre une union :
+    */
     enum DirectionEnum {
       Left = 'left',
       Right = 'right',
@@ -76,16 +84,20 @@ Les soucis avec Enum :
 
   {
     /* PROBLEME 4 */
-    // On ne peut pas restreindre un enum (sans passer par une union...)
+    /*
+    On ne peut pas restreindre un enum (sans passer par une union...)
+    */
     enum DirectionEnum {
       Left = 'left',
       Right = 'right',
       Top = 'top',
       Bottom = 'bottom',
     }
-    // On peut passer Top ou Bottom alors qu'on ne voudrait pas
+    /*
+    On peut passer Top ou Bottom alors qu'on ne voudrait pas :
+    */
     const déplacementHorizontal = (direction: DirectionEnum) => {};
-    // const déplacementHorizontal = (direction: DirectionEnum.Left | DirectionEnum.Right) => {};
+    // ??? const déplacementHorizontal = (direction: DirectionEnum.Left | DirectionEnum.Right) => {};
 
     // Avec des unions :
     type DirectionHorizontal = 'left' | 'right';
@@ -93,7 +105,9 @@ Les soucis avec Enum :
     type DirectionUnion = DirectionHorizontal | DirectionVertical;
     const déplacementHorizontal2 = (direction: DirectionHorizontal) => {};
     //                                         ^?
-    // Note : on peut aussi utiliser l'outils Extract<DirectionUnion, 'left' | 'right'> que nous verrons plus tard.
+    /*
+    Note : on peut aussi utiliser l'outils Extract<DirectionUnion, 'left' | 'right'> que nous verrons plus tard.
+    */
   }
 }
 
@@ -110,7 +124,9 @@ Les avantages d'un Enum :
       Bottom = 'bottom',
     }
 
-    // Attention, c'est une boucle "for...in" et non "for...of", car on itère sur les clés de l'enum
+    /*
+    Attention, c'est une boucle "for...in" et non "for...of", car on itère sur les clés de l'enum
+    */
     for (const direction in DirectionEnum) {
       //       ^?
       const value = DirectionEnum[direction as keyof typeof DirectionEnum]; // On récupère la valeur de l'enum à partir de la clé
@@ -121,7 +137,9 @@ Les avantages d'un Enum :
       });
     }
 
-    // On peut aussi le faire avec une union, mais il faut tricher en commençant avec un tuple :
+    /*
+    On peut aussi le faire avec une union, mais il faut tricher en commençant avec un tuple :
+    */
     const directions = ['left', 'right', 'top', 'bottom'] as const;
     type DirectionUnion = (typeof directions)[number];
     //   ^?
@@ -146,7 +164,9 @@ Les avantages d'un Enum :
       );
     };
 
-    // On peut utiliser les valeurs littérales dans nos vérifications
+    /*
+    On peut utiliser les valeurs littérales dans nos vérifications
+    */
     const isHorizontalBis = (direction: DirectionEnum) => {
       return direction === 'left' || direction === 'toto';
     };

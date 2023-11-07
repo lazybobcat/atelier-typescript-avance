@@ -1,8 +1,10 @@
 /*
-3b - const
+Let, const ou readonly / 3b. const
+==================================
 
 Le mot-clé "const" permet de déclarer une variable dont la valeur ne peut pas être ***réassignée***.
 Cela ne veut pas dire que les valeurs référencées par la variable ne peuvent pas être modifiées.
+La portée de "const" est une portée de bloc.
 */
 
 {
@@ -16,7 +18,9 @@ Cela ne veut pas dire que les valeurs référencées par la variable ne peuvent 
   // @ts-expect-error : on ne peut pas réassigner une variable "const"
   // duchesse = { name: 'Berlioz', vies: 9 };
 
-  // Mais on peut modifier les propriétés de l'objet référencé par la variable
+  /*
+  Mais on peut modifier les propriétés de l'objet référencé par la variable.
+  */
   duchesse.name = 'Berlioz';
 
   it('Devrait avoir changé de nom', () => {
@@ -25,10 +29,13 @@ Cela ne veut pas dire que les valeurs référencées par la variable ne peuvent 
 }
 
 {
-  // C'est la même chose avec les tableaux, car en Javascript/Typescript les tableaux sont passés par référence !
-  const nombres = [1, 2, 3, 4]; // En suvolant "nombres", on voit que c'est un type "number[]"
-  nombres.push(5);
-  nombres[0] = 10;
+  /*
+  C'est la même chose avec les tableaux, car en Javascript/Typescript les tableaux sont passés par référence !
+  */
+  const nombres = [1, 2, 3, 4]; // type "number[]"
+  //    ^?
+  nombres.push(5); // valide
+  nombres[0] = 10; // valide
 
   it('Devrait avoir changé les nombres dans le tableau', () => {
     expect(nombres).toEqual([10, 2, 3, 4, 5]);

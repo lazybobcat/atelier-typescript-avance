@@ -1,5 +1,6 @@
 /*
-1d - Types anonymes
+Introduction / 0d - Types anonymes
+===================================
 
 Dans cette présentation, j'utiliserai régulièrement des types "anonymes".
 */

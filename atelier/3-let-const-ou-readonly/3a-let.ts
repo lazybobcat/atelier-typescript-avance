@@ -1,7 +1,9 @@
 /*
-3a - let
+Let, const ou readonly / 3a. let
+================================
 
 Le mot-clé "let" permet de déclarer une variable dont la valeur peut changer.
+La portée de "let" est une portée de bloc.
 */
 
 {
@@ -51,7 +53,9 @@ it('Devrait avoir une valeur de 2', () => {
 }
 
 {
-  // Que se passe-t-il dans ce cas ci ?
+  /*
+  Que se passe-t-il dans ce cas ci ?
+  */
   const foo = (condition: boolean, x: number): number => {
     if (condition) {
       let x = 10;

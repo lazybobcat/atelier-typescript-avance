@@ -1,5 +1,6 @@
 /*
-Xe - Required
+Utility types / 9e. Required
+============================
 
 Required est un "utility type" qui permet de créer un nouveau type en rendant tous les attributs d'un type existant obligatoires.
 C'est en quelque sorte l'opposé de Partial.
