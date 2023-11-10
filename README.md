@@ -4,6 +4,9 @@
 
 Bienvenue dans l'atelier Typescript avancé.
 
+Nous allons voir quelques uns des concepts avancés de Typescript. Ces concepts ont généralement pour but de "réduire" le type de nos variables à un type le plus précis possible (celui qui la représente le mieux ou celui qui ne contient que ce dont on a besoin).
+"Réduire" un type permet de bénéficier d'une meilleure (parfaite!) autocomplétion et de détecter des erreurs à la compilation (plutôt qu'une fois le projet en production).
+
 Des erreurs se glissent dans le code de cet atelier, c'est normal. Elles sont destinées à êtres corrigées au fur et à mesure.
 Le code complété et annoté en fonction des questions se trouvera sur les branches `présentation/<date de la présentation>`.
 
@@ -36,7 +39,6 @@ Ce dépôt peut également évoluer en fonction de vos interrogations ou de l'é
         Generics
         <ol style="list-style-type: lower-alpha">
             <li>Generics</li>
-            <li>Retour sur <code>unknown</code></li>
         </ol>
     </li>
     <li>

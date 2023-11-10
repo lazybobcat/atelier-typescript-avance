@@ -16,36 +16,6 @@ Conversion des clés d'un type ou objet en union.
   On peut utiliser "keyof" pour récupérer les clés d'un type ou d'un objet :
   */
   {
-    class Vecteur {
-      x: number = 0;
-      y: number = 0;
-    }
-    type VecteurKeys = Prettify<keyof Vecteur>;
-    //   ^?
-
-    it('Devrait être équivalent à une union', () => {
-      type Expected = 'x' | 'y';
-
-      type cases = [Expect<Equal<Expected, VecteurKeys>>];
-    });
-  }
-
-  {
-    interface Vecteur {
-      x: number;
-      y: number;
-    }
-    type VecteurKeys = Prettify<keyof Vecteur>;
-    //   ^?
-
-    it('Devrait être équivalent à une union', () => {
-      type Expected = 'x' | 'y';
-
-      type cases = [Expect<Equal<Expected, VecteurKeys>>];
-    });
-  }
-
-  {
     type Vecteur = {
       x: number;
       y: number;
@@ -82,16 +52,6 @@ On peut utiliser les opérateurs "keyof typeof <type>" afin de recevoir une unio
 */
 {
   /*
-  Pour un type simple :
-  */
-  type Vecteur = {
-    x: number;
-    y: number;
-  };
-  type KeyOfVecteur = Prettify<keyof Vecteur>;
-  //   ^?
-
-  /*
   Pour un enum :
   */
   enum DirectionEnum {
@@ -125,6 +85,8 @@ On peut utiliser les opérateurs "keyof typeof <type>" afin de recevoir une unio
   /*
   On peut ainsi facilement restreindre les valeurs possibles d'un argument d'une fonction par rapport à un enum,
   en le transformant en union :
+
+  /!\ Accrochez-vous, ça va être un peu compliqué !
   */
   enum ConfigurationKeys {
     SETTINGS_THEME = 'SETTINGS_THEME',
@@ -139,6 +101,9 @@ On peut utiliser les opérateurs "keyof typeof <type>" afin de recevoir une unio
   On souhaite que "SettingsKeysUnion" soit uniquement composé des clés commençant par "SETTINGS_" :
   */
   const updateSetting = (key: SettingsKeysUnion, value: string) => {};
+  //                          ^ Comment définir ce type ?
+
+  // ??? type SettingsKeysUnion = 'SETTINGS_THEME' | 'SETTINGS_LANGUAGE' | 'SETTINGS_NOTIFICATIONS';
 
   /*
   Il y a plusieurs façon de récupérer seulement les clés "SETTINGS_"
@@ -161,19 +126,15 @@ On peut utiliser les opérateurs "keyof typeof <type>" afin de recevoir une unio
   En jouant avec les types de Typescript, on peut faire des choses plus complexes :
   */
   // prettier-ignore
+  type StartsWith<TString extends string, TStart extends string>
+    = TString extends `${TStart}${string}` ? TString : never;
+
+  // prettier-ignore
   type SettingsKeysUnion = StartsWith<keyof typeof ConfigurationKeys, 'SETTINGS_'>;
   //   ^?
   // prettier-ignore
   type PaginationKeysUnion = StartsWith<keyof typeof ConfigurationKeys, 'PAGINATION_'>;
   //   ^?
-
-  /*
-  Pour information, voici le code de "StartsWith" :
-  // export type StartsWith<
-  //   TString extends string,
-  //   TStart extends string,
-  // > = TString extends `${TStart}${string}` ? TString : never;
-  */
 
   /*
   On peut maintenant utiliser la fonction updateSetting avec les clés de l'enum "ConfigurationKeys",

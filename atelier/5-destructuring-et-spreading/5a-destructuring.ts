@@ -66,20 +66,21 @@ Destructuration d'un tuple (identique à un tableau, mais typage correct et long
 Destruction d'un objet
 */
 {
+  type Entity = {
+    id: number;
+    name: string;
+  };
   const obj1 = { id: 42, name: 'John Doe', age: 42 };
   const obj2 = { id: 71, sides: 3 };
 
-  const { id, name } = obj1;
+  const { id, name } = obj1; // Ici on extrait les attributs "id" et "name" de l'objet "obj1"
 
   // On peut aussi décomposer un objet dans les arguments d'une fonction
-  const saveEntity = (entity: { id: number }) => {};
-  const displayEntityName = (entity: { name: string }) => {};
+  const saveEntity = ({ id }: Entity) => {};
+  const displayEntityName = ({ name }: Entity) => {};
 
   saveEntity(obj1);
-  saveEntity(obj2);
   displayEntityName(obj1);
-
-  displayEntityName(obj2); // obj2 n'a pas d'attribut "name"
 
   it('Devrait décomposer un objet', () => {
     expect(id).toBe(42);

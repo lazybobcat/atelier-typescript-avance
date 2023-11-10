@@ -18,7 +18,6 @@ Pour ceux qui ont fait du C/C++, c'est le même concept que les templates.
 
 <ol style="list-style-type: lower-alpha">
     <li>Generics</li>
-    <li>Retour sur <code>unknown</code></li>
 </ol>
 
 ## Après ce chapitre je saurai

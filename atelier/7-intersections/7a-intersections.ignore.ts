@@ -23,6 +23,9 @@ liste d'utilisateur dans un channel donné.
   Par héritage ou par composition ?
   */
   {
+    /*
+    Méthode de l'héritage
+    */
     interface UserSearchWithPaginationDTO extends PaginationDTO {
       channelCode?: string;
     }
@@ -30,6 +33,9 @@ liste d'utilisateur dans un channel donné.
     //   ^?
   }
   {
+    /*
+    Méthode de l'intersection/composition
+    */
     interface UserSearchDTO {
       channelCode?: string;
     }
@@ -44,39 +50,6 @@ liste d'utilisateur dans un channel donné.
     - la composition est une relation "a un". UserSearchWithPaginationDTO a un
     PaginationDTO et un UserSearchDTO.
   */
-}
-
-/*
-On peut combiner des types, interfaces et des classes :
-*/
-{
-  {
-    interface Colorful {
-      color: string;
-    }
-
-    interface Circle {
-      radius: number;
-    }
-
-    type ColorfulCircle = Colorful & Circle;
-    type pretty = Prettify<ColorfulCircle>;
-    //   ^?
-  }
-
-  {
-    class Colorful {
-      color: string = 'red';
-    }
-
-    class Circle {
-      radius: number = 10;
-    }
-
-    type ColorfulCircle = Colorful & Circle;
-    type pretty = Prettify<ColorfulCircle>;
-    //   ^?
-  }
 }
 
 /*

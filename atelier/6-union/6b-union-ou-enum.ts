@@ -6,24 +6,29 @@ Lorsqu'on veut énumérer une liste de valeurs en Typescript, on peut utiliser u
 Quelles sont les différences ?
 */
 
+/*
+Sur cette page, nous allons utiliser une enumération de directions en exemple
+*/
+enum DirectionEnum {
+  Left = 'left',
+  Right = 'right',
+  Top = 'top',
+  Bottom = 'bottom',
+}
+const leftDirection: DirectionEnum = DirectionEnum.Left;
+
+/*
+Union, alternative à un enum. On sépare la valeur par des "|" (penser "ou").
+*/
 {
   // Exemple d'union
   type Direction = 'left' | 'right' | 'top' | 'bottom';
   //   ^?
   const direction: Direction = 'left';
 
-  // Exemple d'enum
-  enum DirectionEnum {
-    Left = 'left',
-    Right = 'right',
-    Top = 'top',
-    Bottom = 'bottom',
-  }
-  const directionEnum: DirectionEnum = DirectionEnum.Left;
-
   it('Devrait utiliser une union', () => {
     expect(direction).toBe('left');
-    expect(directionEnum).toBe('left');
+    expect(leftDirection).toBe('left');
   });
 }
 
@@ -32,7 +37,7 @@ Les soucis avec Enum :
 */
 {
   {
-    /* PROBLEME 1 */
+    /* PROBLEME 1 : par défaut, chaque clé est assignée à un number */
     enum DirectionEnum {
       Left,
       Right,
@@ -48,7 +53,7 @@ Les soucis avec Enum :
     foo(42);
   }
 
-  /* PROBLEME 2 */
+  /* PROBLEME 2 : la transpilation peut générer beaucoup de code */
   /*
   Javascript n'a pas de type "enum" nativement, le transpileur est donc obligé de créer du code compliqué qui va alourdir
   le bundle final. Voici le code transpilé en Javascript :
@@ -62,37 +67,22 @@ Les soucis avec Enum :
   //   })(DirectionEnum || (DirectionEnum = {}));
 
   {
-    /* PROBLEME 3 */
-    /*
-    On ne peut pas étendre un enum, mais on peut étendre une union :
-    */
-    enum DirectionEnum {
-      Left = 'left',
-      Right = 'right',
-      Top = 'top',
-      Bottom = 'bottom',
-    }
-
+    /* PROBLEME 3 : On ne peut pas étendre un enum, mais on peut étendre une union */
     // ça n'existe pas :
     // enum DirectionEnum2 = DirectionEnum & { Diagonal = 'diagonal' };
 
+    /*
+    On peut étendre une union :
+    */
     type DirectionUnion = 'left' | 'right' | 'top' | 'bottom';
     type IdleOrDirectionUnion = 'idle' | DirectionUnion;
+
     type pretty = Prettify<IdleOrDirectionUnion>;
     //   ^?
   }
 
   {
-    /* PROBLEME 4 */
-    /*
-    On ne peut pas restreindre un enum (sans passer par une union...)
-    */
-    enum DirectionEnum {
-      Left = 'left',
-      Right = 'right',
-      Top = 'top',
-      Bottom = 'bottom',
-    }
+    /* PROBLEME 4 : On ne peut pas restreindre un enum (sans passer par une union...) */
     /*
     On peut passer Top ou Bottom alors qu'on ne voudrait pas :
     */
@@ -105,6 +95,7 @@ Les soucis avec Enum :
     type DirectionUnion = DirectionHorizontal | DirectionVertical;
     const déplacementHorizontal2 = (direction: DirectionHorizontal) => {};
     //                                         ^?
+
     /*
     Note : on peut aussi utiliser l'outils Extract<DirectionUnion, 'left' | 'right'> que nous verrons plus tard.
     */
@@ -117,13 +108,6 @@ Les avantages d'un Enum :
 {
   {
     /* Itération */
-    enum DirectionEnum {
-      Left = 'left',
-      Right = 'right',
-      Top = 'top',
-      Bottom = 'bottom',
-    }
-
     /*
     Attention, c'est une boucle "for...in" et non "for...of", car on itère sur les clés de l'enum
     */
@@ -151,13 +135,6 @@ Les avantages d'un Enum :
 
   {
     /* Conditions simples */
-    enum DirectionEnum {
-      Left = 'left',
-      Right = 'right',
-      Top = 'top',
-      Bottom = 'bottom',
-    }
-
     const isHorizontal = (direction: DirectionEnum) => {
       return (
         direction === DirectionEnum.Left || direction === DirectionEnum.Right

@@ -18,7 +18,7 @@ Le problème :
         return Math.PI * (x * x);
     }
 
-    return 0;
+    return 0; // Pas terrible
   };
 
   const [base, hauteur] = [10, 5];

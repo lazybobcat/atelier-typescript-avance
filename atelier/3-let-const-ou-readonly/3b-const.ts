@@ -5,6 +5,8 @@ Let, const ou readonly / 3b. const
 Le mot-clé "const" permet de déclarer une variable dont la valeur ne peut pas être ***réassignée***.
 Cela ne veut pas dire que les valeurs référencées par la variable ne peuvent pas être modifiées.
 La portée de "const" est une portée de bloc.
+
+/!\ Prenez garde à "const" avec un tableau ou un objet !
 */
 
 {

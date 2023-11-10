@@ -23,7 +23,7 @@ Une fonction peut retourner "never" si elle ne retourne jamais rien (même pas v
 }
 
 /*
-"never" est également utilisé lorsque Typescript détermine qu'il n'y a plus de valeurs possibles dans une union.
+"never" est également utilisé lorsque Typescript détermine qu'il n'y a plus de valeurs possibles dans une union ou un enum.
 */
 {
   const foo = (x: 'carnivore' | 'herbivore') => {

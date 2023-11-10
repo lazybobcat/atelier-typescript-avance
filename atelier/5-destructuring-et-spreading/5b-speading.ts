@@ -59,7 +59,7 @@ l'objet cible ne sera pas modifié.
 
   {
     const queryStr = 'taper google dans google';
-    const search = { ...defaultSearch, query: queryStr }; // accolades pour un objet
+    const search: SearchOptions = { ...defaultSearch, query: queryStr }; // accolades pour un objet
 
     it('Devrait étendre un objet', () => {
       expect(search).toEqual({
@@ -76,7 +76,7 @@ l'objet cible ne sera pas modifié.
     type SearchOptions.
     */
     const query = 'taper google dans google';
-    const search = { ...defaultSearch, query };
+    const search: SearchOptions = { ...defaultSearch, query };
   }
 
   /*
@@ -84,27 +84,21 @@ l'objet cible ne sera pas modifié.
   et en retourner un nouveau.
   */
   {
-    const badFoo = (options: SearchOptions) => {
-      options.query = 'foo';
+    const foo = (options: SearchOptions) => {
+      /*
+      Si on ne veut pas modifier l'objet "source" options, il ne faut pas faire ça !
+      */
+      // options.query = 'foo';
 
-      return options;
+      /*
+      Mais on peut utiliser le spread operator pour copier tout ce qu'il y a dans "options",
+      puis éventuellement surcharger certaines valeurs.
+      */
+      return { ...options, query: 'foo' };
     };
 
     const options: SearchOptions = { query: 'bar', page: 1, pageSize: 10 };
-    const result = badFoo(options);
-
-    it("Devrait modifier l'objet en entrée", () => {
-      expect(options.query).toEqual('foo');
-      expect(result.query).toEqual('foo');
-    });
-  }
-  {
-    const goodFoo = (options: SearchOptions) => {
-      return { ...options, query: 'foo' }; // on fait une copie de options
-    };
-
-    const options: SearchOptions = { query: 'bar', page: 1, pageSize: 10 };
-    const result = goodFoo(options);
+    const result = foo(options);
 
     it("Devrait modifier l'objet en entrée", () => {
       expect(options.query).toEqual('bar');

@@ -41,20 +41,6 @@ const toulouse = fabriquerUnAnimal('chat');
 const médor = fabriquerUnAnimal('chien');
 //    ^?
 
-/*
-/!\ Attention : on peut faire n'importe quoi avec "as", commme vous pouvez le voir ci-dessous.
-La documentation de Typescript dit à propos de ce code : "This isn’t the sort of code you would want in your codebase however."
-et suggère d'utiliser des "type guard", que nous verrons plus tard.
-*/
-
-class InfosPrivées {
-  private numeroCarteBleue = '1234 5678 9012 3456';
-}
-
-const infos = new InfosPrivées();
-const numéroCarte = (infos as unknown as { numeroCarteBleue: string })
-  .numeroCarteBleue; // Aie, on accède à une propriété privée !
-
 /* _____________ Test Cases _____________ */
 import { expect, it } from 'vitest';
 
@@ -66,8 +52,4 @@ it('Toulouse devrait être un chat', () => {
 it('Médor devrait être un chien', () => {
   expect(médor).toHaveProperty('aboyer');
   expect(médor.aboyer()).toEqual('Ouaf');
-});
-
-it("Devrait être possible d'accéder à une propriété privée", () => {
-  expect(numéroCarte).toEqual('1234 5678 9012 3456');
 });

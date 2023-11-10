@@ -7,9 +7,15 @@ et "second", on peut typer cet objet soit avec une interface, soit avec un
 type :
 */
 
-// interface MyCustomParam {}
+// interface MyCustomParam {
+//   first: number;
+//   second: number;
+// }
 
-// type MyCustomParam = {};
+// type MyCustomParam = {
+//   first: number;
+//   second: number;
+// };
 
 function addition(values: any): number {
   return values.first + values.second;
@@ -38,9 +44,8 @@ interface Fruit {
 const pomme: Fruit = { nom: 'pomme', vitamines: ['B', 'E', 'A'] };
 
 /*
-Les classes peuvent aussi étendre d'une classe ou d'une interface.
+Les interfaces peuvent aussi étendre d'une classe ou d'une interface.
 */
-
 class Animal {
   constructor(public nom: string) {}
 }
